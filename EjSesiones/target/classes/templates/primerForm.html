@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title th:text="#{primerForm.titulo}"></title>
+	<link rel="icon" href="data:," />
+	<link rel="stylesheet" th:href="@{/css/estilos.css}" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
+	<script th:src="@{/js/funciones.js}"></script>
+</head>
+
+<body>
+
+<div  th:replace="fragments/header :: header"></div>
+
+<form name="primerForm" method="POST" action="primerForm" enctype="multipart/form-data" th:object="${primerUser}">
+
+	<fieldset>
+
+		<legend th:text="#{primerForm.titulo}"></legend>
+
+		<span th:text="#{primerForm.nombre.titulo}"></span>
+		</br>
+		<input type="text" name="nombre" th:field="*{nombre}"></input>
+
+		<br />
+
+		<span th:text="#{primerForm.primerApellido.titulo}"></span>
+		<input type="text" name="primerApellido" th:field="*{apellido1}"></input>
+
+		<br />
+		<span th:text="#{primerForm.segundoApellido.titulo}"></span>
+		<input type="text" name="segundoApellido" th:field="*{apellido2}"></input>
+
+		<br />
+		
+			<br />
+		<span th:text="#{primerForm.fechaNac.titulo}"></span>
+		<input type="text" name="fechaNac" th:field="*{fechaNac}"></input>
+
+		<br />
+
+		<span th:text="#{primerForm.genero.titulo}" > </span>
+		<br />
+
+		<th:block th:each="genero: ${listaGenerosOrdenada}">
+			<span th:text="${genero.value}" />
+			
+			<input type="radio" name="siglaGenero" th:id="${genero.value}" th:field="*{siglaGenero}"
+				th:value="${genero.key}"  th:checked="${genero.key == siglaGeneroUser}"  onclick="deseleccionarRadio(this)" />
+
+			<br />
+		</th:block>
+		<br />
+
+		<span th:text="#{primerForm.eCivil.titulo}"> </span>
+		<br />
+
+		<th:block th:each="elegido : ${listaCasadoEHijosOrdenada}">
+			<input type="checkbox" name="est_Civil_e_Hijos" th:id="${elegido.value}" th:field="*{est_Civil_e_Hijos}"
+				th:value="${elegido.key}"
+				th:checked="${elegido.key == est_Civil_e_HijosUser}" />
+			<span th:text="${elegido.value}" />
+			<br/>
+		</th:block>
+		
+		<br/>
+		
+		<span th:text="#{primerForm.nacionalidades.titulo}"></span>
+		<br />
+
+		<select name="nacionalidades" id="nacionalidades" size="5" multiple="multiple">
+			<th:block th:each="nacionalidad: ${listaNacionalidadesOrdenada}">
+				<option th:field="*{nacionalidades}" th:value="${nacionalidad.value}"
+					th:selected="${nacionalidades != null} and ${#lists.contains(nacionalidades, nacionalidad.key)}" />
+				<span th:text="${nacionalidad.value}" />
+			</th:block>
+		</select>
+		
+		
+		<br/>
+		<br/>
+		<input type="submit" th:value="#{primerForm.boton.submit}" />
+		
+	</fieldset>
+
+</form>
+</body>
+</html>

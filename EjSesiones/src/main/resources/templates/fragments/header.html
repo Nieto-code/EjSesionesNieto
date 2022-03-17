@@ -1,0 +1,12 @@
+<!--Fragmento de boton-->
+	<header>
+	
+	<th:block th:each="dato : ${datosFragment}">
+	
+		<a th:href="@{/sesion/} + ${dato.key}">
+			<img th:src="@{/img/} + ${dato.value}" th:class="${!paso.equals(dato.key)} ? 'desactivado'"/>
+		</a>
+	</th:block>
+	
+	</header>
+

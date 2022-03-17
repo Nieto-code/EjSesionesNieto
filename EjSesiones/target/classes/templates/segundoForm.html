@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title th:text="#{segundoForm.titulo}"></title>
+	<link rel="icon" href="data:," />
+	<link rel="stylesheet" th:href="@{/css/estilos.css}" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
+	<script th:src="@{/js/funciones.js}"></script>
+</head>
+
+<body>
+
+<div  th:replace="fragments/header :: header"></div>
+
+	<form name="segundoForm" method="POST" action="segundoForm" enctype="multipart/form-data" th:object="${segundoUser}">
+
+		<fieldset>
+
+			<legend th:text="#{segundoForm.titulo}">	</legend>
+
+			<span th:text="#{segundoForm.departamento.titulo}"></span>
+			<br />
+	
+			<select name="siglaDepartamento" id="siglaDepartamento" >
+				<th:block th:each="departamento: ${listaDepartamentosOrdenada}">
+					<option th:field="*{siglaDepartamento}" th:value="${departamento.value}"
+						th:selected="${siglaDepartamento != null} and ${#lists.contains(siglaDepartamento, departamento.key)}" />
+					<span th:text="${departamento.value}" />
+				</th:block>
+			</select>
+
+			<br />
+			<br />
+
+			<span th:text="#{segundoForm.salario.titulo}"></span>
+			<input type="text" name="salario" th:field="*{salario}"></input>
+
+			<br />
+		
+			<br />
+	
+			<span th:text="#{segundoForm.comentarios.titulo}" />
+			<textarea name="comentarios" id="comentarios"  th:field="*{comentarios}"  th:text="${comentariosUser}"></textarea>
+			
+			<br />
+			<br />
+			<input type="submit" th:value="#{segundoForm.boton.submit}" />
+
+	
+		</fieldset>
+
+	</form>
+</body>
+
+</html>

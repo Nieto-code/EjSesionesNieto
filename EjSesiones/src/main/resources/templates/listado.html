@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title th:text="#{tercerForm.titulo}"></title>
+	<link rel="icon" href="data:," />
+	<link rel="stylesheet" th:href="@{/css/estilos.css}" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
+	<script th:src="@{/js/funciones.js}"></script>
+</head>
+
+<body>
+
+	<div th:replace="fragments/header :: header"></div>
+
+	<div th:object="${listadoUser}">
+	
+		<fieldset>
+
+			<legend th:text="#{primerForm.titulo}"></legend>
+
+
+			<span> Nombre: </span><span th:text="${listadoUser.nombre}"></span>
+			<br />
+
+			<span> Primer apellido: </span><span th:text="${listadoUser.apellido1}"></span>
+			<br />
+
+			<span> Segundo apellido: </span><span th:text="${listadoUser.apellido2}"></span>
+			<br />
+
+			<span> Fecha de nacimiento: </span><span th:text="${listadoUser.fechaNac}"></span>
+			<br />
+			
+			<th:block th:each="nacionalidad : *{nacionalidades}">
+            <span> Nacionalidad: </span><span th:text="${nacionalidad}"/>
+        </th:block>
+		</fieldset>
+		
+		<fieldset>
+
+			<legend th:text="#{segundoForm.titulo}"></legend>
+
+			<span> Departamento: </span><span  name="siglaDepartamento" id="siglaDepartamento" th:text="*{siglaDepartamento}"/>
+			<br/>
+			
+      		<span>Salario: </span><span name="salario" id="salario" th:text="*{salario}"/>
+			<br/>
+			
+			 <span>Comentarios:</span><span name="comentarios" id="comentarios" th:text="*{comentarios}"/>
+		</fieldset>
+			
+		<fieldset>
+
+			<legend th:text="#{segundoForm.titulo}"></legend>
+			
+			<span>Cuenta Bancaria: </span><span name="cuentaBancaria" id="cuentaBancaria" th:text="*{cuentaBancaria}"/>
+			<br/>
+			
+					<form method="POST" th:action="listado" enctype="multipart/form-data">
+
+					<input type="submit" value="Volver y eliminar sesión"/>
+		
+					</form>
+
+		</fieldset>
+		
+
+		
+	</div>
+	
+
+
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title th:text="#{tercerForm.titulo}"></title>
+	<link rel="icon" href="data:," />
+	<link rel="stylesheet" th:href="@{/css/estilos.css}" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
+	<script th:src="@{/js/funciones.js}"></script>
+</head>
+
+<body>
+
+<div  th:replace="fragments/header :: header"></div>
+
+
+	<form name="tercerForm" method="POST" action="tercerForm" enctype="multipart/form-data" th:object="${tercerUser}">
+	
+		<fieldset>
+			<legend th:text="#{tercerForm.titulo}">	</legend>
+			
+				<span th:text="#{tercerForm.cuentaBancaria.titulo}" />
+				<br />
+				<input type="text" name="cuentaBancaria" id="cuentaBancaria" th:field="*{cuentaBancaria}">
+				<br />
+				<input type="submit" th:value="#{tercerForm.boton.submit}" />
+				
+			
+		</fieldset>
+
+	</form>
+
+
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+.rojo{
+	
+	color: red;
+	
+}
+
+.negrita{
+	
+	font-weight: bold;
+	
+}
+
+#titulo{
+	text-align: center;
+}
+
+#contenedor{
+	max-width: 50%;
+	margin: auto;
+    padding: auto;
+    text-align: center;
+    justify-content: center
+}
+
+.tablaListado , tr , th, td{
+	border: 1px solid black;
+}
+
+.imagen{
+display: block;
+text-align: center;
+max-width: 64px;
+max-height: 64px;
+padding: 0 auto;
+margin:auto;
+}
+
+fieldset{
+	
+  display: block;
+  margin:auto;
+  padding:auto;
+  max-width: 250px;
+  text-align: center;
+  
+ 
+}
+
+.desactivado{
+	filter: opacity(40%);
+}
+
+img{
+	max-width: 75px;
+}
